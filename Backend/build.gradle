@@ -1,0 +1,58 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.18'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.masai'
+version = '0.0.1-SNAPSHOT'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    // Updated jjwt dependencies
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5' // API for JJWT
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5' // Implementation of JJWT
+    runtimeOnly 'io.jsonwebtoken:jjwt-orgjson:0.11.5' // JSON processing for JJWT
+
+    // Other dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.session:spring-session-core'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'   //for excel export
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'  // for swagger
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'  // Spring Data Redis
+//    implementation 'io.lettuce.core:lettuce-core:6.1.4'  // Lettuce (Redis client)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator' //for Actuator
+    implementation 'org.springframework.boot:spring-boot-starter-mail'  
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.398'
+	implementation 'com.amazonaws:aws-java-sdk-route53:1.12.398'
+	implementation 'com.amazonaws:aws-java-sdk-cloudfront:1.12.398'
+	
+	
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
